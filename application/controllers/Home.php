@@ -7,12 +7,13 @@ class Home extends CI_Controller{
         $this->load->view('user/home');
     }
 
+    //fungsi untuk loginpage
     public function loginpage(){
         if (isset($_POST['submit'])) {
             $this->form_validation->set_rules('username','Username','required');
             $this->form_validation->set_rules('password','Password','required');
             if ($this->form_validation->run() == TRUE) {
-            
+
                 $username = $_POST['username'];
                 $password = $_POST['password'];
 
