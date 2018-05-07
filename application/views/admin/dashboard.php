@@ -32,14 +32,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="<?php echo site_url('home/aboutus')?>">About Us</a></li>
-            <li><a href="#">List Item</a></li>
-            <li><a href="#">Blog</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Item<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="">Add Item</a></li>
+					<li><a href="">See List Item</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="<?php echo site_url('admin/addarticle') ?>">Add Blog</a></li>
+					<li><a href="<?php echo site_url('admin/seearticle') ?>">See Article</a></li>
+                </ul>
+            </li>
             <li><a href="<?php echo base_url();?>index.php/home/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
         </div>
     </div>
     </nav>
-
+    
 <div class="container">
     
     <!-- <div class="col-lg-4"> -->
@@ -53,6 +65,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     <!-- </div>                -->
 </div>
-</body>
-</html>
-        

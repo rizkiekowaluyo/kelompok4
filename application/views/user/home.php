@@ -55,7 +55,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="<?php echo site_url('home/aboutus')?>">About Us</a></li>
-            <li><a href="#">List Item</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="<?php echo site_url('home/registerpage')?>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li><a href="<?php echo site_url('home/loginpage')?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
