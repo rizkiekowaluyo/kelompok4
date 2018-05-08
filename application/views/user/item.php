@@ -31,7 +31,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">List Item</a></li>
+            <li><a href="<?php echo site_url('home/aboutus')?>">About Us</a></li>
+            <li><a href="<?php echo site_url('user/item')?>">List Item</a></li>
             <li><a href="<?php echo site_url('user/blog')?>">Blog</a></li>
             <li><a href="<?php echo base_url();?>index.php/home/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
@@ -42,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--Beginning of Box-->
 <div class="container">
 		<div class="row">
-		<?php foreach ($blog_array as $key) {
+		<?php foreach ($item_array as $key) {
 			$increment = 3;
 				if($increment%3==0){ ?>
 					<div class="container">
@@ -51,13 +52,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    
 		        <?php } ?>
 					<div class="panel panel-primary">
-		    	    	<div class="panel-heading"><?php echo $key['title']?></div>
+		    	    	<div class="panel-heading"><?php echo $key['name']?></div>
+		        		
 		        		<?php echo "
-						<div class='panel-body'><img src='".base_url()."asset/imgblog/".$key['image_file']."' class='img-responsive' style='width:100%; height: 200px' alt='Image'></div>
-						"?>
-		        		<div class="panel-footer">Author : <?php echo $key['author'];?></div>
+		        		<div class='panel-body'><img src='".base_url()."asset/imgitem/".$key['photo']."' class='img-responsive' style='width:100%; height: 200px' alt='Image'></div>
+		        		"?>
+		        		<div class="panel-footer">Vendor : <?php echo $key['vendor'];?></div>
+		        		<div class="panel-footer">Harga : <?php echo $key['price'];?></div>
 								<form action="">
 								</form>
+								<button type="button" class="btn btn-default btn-blog" onclick="return confirm('yakin akan pesan ini?')"><a href="<?=site_url().'/Transaksi/processtransaction/'.$key['id_item']?>">Order</a></button>
+
 								
 								<!-- <button type="button" class="btn btn-default btn-blog"><a href="<?php echo site_url('home/blog_detail/'.$key['id'])?>">View Detail</a></button>
 								<button type="button" class="btn btn-default btn-blog"><a href="<?php echo site_url('home/blog_create/')?>">Create Data</a></button> -->

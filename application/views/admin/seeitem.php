@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>Login Page</title>
 </head>
 
-<body style="background-color:#2d2d2d">
+<body style="background-color:#f2f2f2">
 
     <!-- navigasi bar menu diatas  -->
     <nav class="navbar navbar-inverse">
@@ -35,15 +35,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Item<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="<?php echo site_url('admin/additem')?>">Add Item</a></li>
-					<li><a href="<?php echo site_url('admin/seeitem')?>">See List Item</a></li>
+                    <li><a href="">Add Item</a></li>
+					<li><a href="">See List Item</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="<?php echo site_url('admin/addarticle') ?>">Add Blog</a></li>
-					<li><a href="<?php echo site_url('admin/seearticle') ?>">See Article</a></li>
+					<li><a href="<?php echo site_url('admin/seearticle')?>">See Article</a></li>
                 </ul>
             </li>
             <li><a href="<?php echo base_url();?>index.php/home/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -51,42 +51,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
     </nav>
-    
-<div class="container">
-    
-    <!-- <div class="col-lg-4"> -->
-        <div class="jumbotron" style="margin-top:5px">
-            <h3>Profile</h3><br>
-                <?php if ($jumlah>0) {?>
-                    <div class="alert alert-success"><h1><?=$jumlah?> Transaksi Baru</h1></div>
-                   
-                    <table class="table table-striped table-bordered data">
+
+
+<table class="table table-striped table-bordered data">
 					<thead>
 						<tr>			
-							<th>ID Transaksi</th>
-							<th>Name User</th>
-                            <th>No Hp</th>
-                            <th>Tanggal Pesanan</th>
+							<th>ID Item</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Vendor</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Category</th>
+                            <th>Photo</th>
+							<th colspan="2" style="text-align: center;">Aksi</font></th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($user as $key) { 
-                            $dataUser = $this->db->where('id_user',$key->id_user)->get('user')->row_array();?>
+						<?php foreach ($dataitem as $key) {?>
 						<tr>				
-							<td><?php echo $key->id_transaction; ?></td>
-							<td><?php echo $dataUser['name']; ?></td>
-                            <td><?php echo $dataUser['telp'];?></td>
-                            <td><?php echo $key->date; ?></td>
+							<td><?php echo $key['id_item']; ?></td>
+							<td><?php echo $key['name']; ?></td>
+							<td><?php echo $key['description_name']; ?></td>
+							<td><?php echo $key['vendor']; ?></td>
+                            <td><?php echo $key['price']; ?></td>
+                            <td><?php echo $key['stock_item']; ?></td>
+                            <td><?php echo $key['category_item']; ?></td>
+                            <td><?php echo $key['photo']; ?></td>
+							<td>
+								<form action="" method="post">
+									<input type="hidden" name= "edit" class="form-control" value="<?php echo $key['id_item']; ?>">
+									<button class="btn btn-warning">Edit</button>
+								</form>
+							</td>
+							<td>
+								<form action="" method="post">
+									<input type="hidden" name= "delete" class="form-control" value="<?php echo $key['id_item']; ?>">
+									<button class="btn btn-danger" onclick="return confirm('yakin akan menghapus kategori <?php echo $key['name']?> ?')">Delete</button>
+								</form>
+							</td>
 						</tr>
 						<?php } ?>
 					</tbody>
 				</table>
-                <?php } ?>
-                <?php if (isset($_SESSION['success'])) {?>
-                    <div class="alert alert-success"><?php echo $_SESSION['success'];?></div>
-                <?php } ?>
-                <?php echo validation_errors('<div class="alert alert-danger">','</div>');?>
-                hello, <?php echo $_SESSION['username'];?>
-        </div>
-    <!-- </div>                -->
-</div>
+			</div>

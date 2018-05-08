@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>Login Page</title>
 </head>
 
-<body style="background-color:#2d2d2d">
+<body style="background-color:#f2f2f2">
 
     <!-- navigasi bar menu diatas  -->
     <nav class="navbar navbar-inverse">
@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Item<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="<?php echo site_url('admin/additem')?>">Add Item</a></li>
+                    <li><a href="<?php echo site_url('admin/additem') ?>">Add Item</a></li>
 					<li><a href="<?php echo site_url('admin/seeitem')?>">See List Item</a></li>
                 </ul>
             </li>
@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="<?php echo site_url('admin/addarticle') ?>">Add Blog</a></li>
-					<li><a href="<?php echo site_url('admin/seearticle') ?>">See Article</a></li>
+					<li><a href="<?php echo site_url('admin/seearticle')?>">See Article</a></li>
                 </ul>
             </li>
             <li><a href="<?php echo base_url();?>index.php/home/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -51,42 +51,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
     </nav>
-    
-<div class="container">
-    
-    <!-- <div class="col-lg-4"> -->
-        <div class="jumbotron" style="margin-top:5px">
-            <h3>Profile</h3><br>
-                <?php if ($jumlah>0) {?>
-                    <div class="alert alert-success"><h1><?=$jumlah?> Transaksi Baru</h1></div>
-                   
-                    <table class="table table-striped table-bordered data">
-					<thead>
-						<tr>			
-							<th>ID Transaksi</th>
-							<th>Name User</th>
-                            <th>No Hp</th>
-                            <th>Tanggal Pesanan</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($user as $key) { 
-                            $dataUser = $this->db->where('id_user',$key->id_user)->get('user')->row_array();?>
-						<tr>				
-							<td><?php echo $key->id_transaction; ?></td>
-							<td><?php echo $dataUser['name']; ?></td>
-                            <td><?php echo $dataUser['telp'];?></td>
-                            <td><?php echo $key->date; ?></td>
-						</tr>
-						<?php } ?>
-					</tbody>
-				</table>
-                <?php } ?>
-                <?php if (isset($_SESSION['success'])) {?>
-                    <div class="alert alert-success"><?php echo $_SESSION['success'];?></div>
-                <?php } ?>
-                <?php echo validation_errors('<div class="alert alert-danger">','</div>');?>
-                hello, <?php echo $_SESSION['username'];?>
+
+
+<?php echo form_open_multipart('admin/add_item'); ?>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="id">Id</label>
+                <input type="text" class="form-control" id="id_item" name="id_item" placeholder="Id">
+            </div>
+            <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                    <label for="vendor">Vendor</label>
+                    <input type="text" class="form-control" id="vendor" name="vendor" placeholder="Vendor">
+            </div>
+            <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+            </div>
+            <div class="form-group">
+                    <label for="stock">Stock</label>
+                    <input type="text" class="form-control" id="stock" name="stock" placeholder="Stock">
+            </div>
+            <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea type="text" class="form-control" id="description" name="description" placeholder="Description" cols="25" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                    <label for="photo">Photo</label>
+                    <input type = "file" name = "photo" size = "20" /> 
+            </div>
+            <input type="submit" name="add" value="Tambah" class="btn btn-success">
+
+
+            </form>
         </div>
-    <!-- </div>                -->
-</div>
+    </div>
+</main>

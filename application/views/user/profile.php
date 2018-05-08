@@ -31,9 +31,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="<?php echo site_url('home/aboutus')?>">About Us</a></li>
-            <li><a href="#">List Item</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><a href="<?php echo site_url('user/item')?>">List Item</a></li>
+            <li><a href="<?php echo site_url('user/blog')?>">Blog</a></li>
             <li><a href="<?php echo base_url();?>index.php/home/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
         </div>
