@@ -35,8 +35,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Item<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="">Add Item</a></li>
-					<li><a href="">See List Item</a></li>
+                    <li><a href="<?php echo site_url('admin/additem')?>">Add Item</a></li>
+					<li><a href="<?php echo site_url('admin/seeitem')?>">See List Item</a></li>
                 </ul>
             </li>
             <li class="dropdown">
