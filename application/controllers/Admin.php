@@ -58,6 +58,8 @@ class Admin extends CI_Controller{
         $this->load->view('loginadmin');
     }
 
+/* BEGIN ARTICLE */
+
     public function addarticle(){
         $this->load->helper('form');
         $this->load->view('admin/addarticle');

@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,6 +18,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>See Item</title>
 </head>
  
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Login Page</title>
+</head>
+
+>>>>>>> 9d800e704e338886e8b659e29a54a43904ff1c6f
 <body style="background-color:#f2f2f2">
 
     <!-- navigasi bar menu diatas  -->
@@ -33,11 +41,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#">Home</a></li>
+<<<<<<< HEAD
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Item<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="<?php echo site_url('admin/additem') ?>">Add Item</a></li>
 					<li><a href="<?php echo site_url('admin/seeitem') ?>">See List Item</a></li>
+=======
+            <li><a href="<?php echo site_url('home/aboutus')?>">About Us</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Item<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="">Add Item</a></li>
+					<li><a href="">See List Item</a></li>
+>>>>>>> 9d800e704e338886e8b659e29a54a43904ff1c6f
                 </ul>
             </li>
             <li class="dropdown">
@@ -65,8 +82,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <th>Stock</th>
                             <th>Category</th>
                             <th>Photo</th>
+<<<<<<< HEAD
 							<th style="text-align: center;">Edit</font></th>
                             <th style="text-align: center;">Delete</font></th>
+=======
+							<th colspan="2" style="text-align: center;">Aksi</font></th>
+>>>>>>> 9d800e704e338886e8b659e29a54a43904ff1c6f
 						</tr>
 					</thead>
 					<tbody>
@@ -96,9 +117,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<?php } ?>
 					</tbody>
 				</table>
+<<<<<<< HEAD
 			</div>
 <script>
 $(document).ready( function () {
     $('.data').DataTable();
 } );
 </script>
+=======
+			</div>
+>>>>>>> 9d800e704e338886e8b659e29a54a43904ff1c6f
