@@ -74,18 +74,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="asset/baru.jpg" alt="Image">
+                <img src="asset/motor.jpg" alt="Image">
                 <div class="carousel-caption">
                     <h3>Bengkel</h3>
-                    <p>Its Funny if you not reading book</p>
+                    <p>Its Funny if you dont know about machine</p>
                 </div>      
             </div>
 
             <div class="item">
-                <img src="asset/baru.jpg" alt="Image">
+                <img src="asset/motor1.jpg" alt="Image">
                 <div class="carousel-caption">
                     <h3>Bengkel</h3>
-                    <p>Book is window of the universe</p>
+                    <p>man is stell</p>
                 </div>      
             </div>
         </div>
@@ -106,23 +106,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <h3>Highly Recommended Item</h3><br>
     <div class="row">
         <div class="col-sm-3">
-            <img src="asset/book1.jpg" class="img-responsive" style="width:50%" alt="Image">
-            <p>7 Habits of Highly Effective people</p>
+            <img src="asset/imgitem/download.jpg" class="img-responsive" style="width:50%" alt="Image">
+            <p>Oli fastfron Formula</p>
             <button type="button" class="btn btn-primary">View Full Page</button>
         </div>
         <div class="col-sm-3"> 
-            <img src="asset/book2.jpg" class="img-responsive" style="width:50%" alt="Image">
-            <p>Guns, Germ and Steel</p>   
+            <img src="asset/imgitem/download.jpg" class="img-responsive" style="width:50%" alt="Image">
+            <p>Oli fastfron Formula</p>   
             <button type="button" class="btn btn-primary">View Full Page</button> 
         </div>
         <div class="col-sm-3">
-            <img src="asset/book3.jpg" class="img-responsive" style="width:50%" alt="Image">
-            <p>Cosmos</p>    
+            <img src="asset/imgitem/download.jpg" class="img-responsive" style="width:50%" alt="Image">
+            <p>Oli fastfron Formula</p>    
             <button type="button" class="btn btn-primary">View Full Page</button>
         </div>
         <div class="col-sm-3">
-            <img src="asset/book4.jpg" class="img-responsive" style="width:50%" alt="Image">
-            <p>A brief history of time</p>    
+            <img src="asset/imgitem/download.jpg" class="img-responsive" style="width:50%" alt="Image">
+            <p>Oli fastfron Formula</p>    
             <button type="button" class="btn btn-primary">View Full Page</button>
         </div>
     </div>

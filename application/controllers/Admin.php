@@ -144,5 +144,12 @@ class Admin extends CI_Controller{
         $this->load->view('admin/seeitem',$data);
     }
 
+    public function DeleteArticle(){
+        $nameimage = $this->input->post('nameimage');
+		$id_article = $this->input->post('id_article');
+		unlink('asset/imgblog/'.$nameimage);
+		$this->article->DeleteData($id_article);
+		redirect('admin/seearticle');
+    }
     
 }

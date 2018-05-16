@@ -16,4 +16,9 @@ class Article extends CI_Model{
         $allarticle = $this->db->query("select * from article");
         return $allarticle->result_array();
     }
+
+    public function DeleteData($id_article)
+    {
+      $this->db->query("DELETE from article where id_article =".$id_article);
+    }
 }

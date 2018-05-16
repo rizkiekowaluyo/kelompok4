@@ -10,9 +10,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Login Page</title>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <title>See Article</title>
 </head>
 
 <body style="background-color:#f2f2f2">
@@ -31,12 +33,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="<?php echo site_url('home/aboutus')?>">About Us</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Item<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="">Add Item</a></li>
-					<li><a href="">See List Item</a></li>
+                    <li><a href="<?php echo site_url('admin/additem') ?>">Add Item</a></li>
+					<li><a href="<?php echo site_url('admin/seeitem') ?>">See List Item</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -62,7 +63,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<th>Title</th>
                             <th>Content</th>
                             <th>Image_file</th>
-							<th colspan="2" style="text-align: center;">Aksi</font></th>
+							<th style="text-align: center;">Edit</font></th>
+                            <th style="text-align: center;">Delete</font></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -81,9 +83,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</form>
 							</td>
 							<td>
-								<form action="" method="post">
-									<input type="hidden" name= "delete" class="form-control" value="<?php echo $key['id_article']; ?>">
-									<button class="btn btn-danger" onclick="return confirm('yakin akan menghapus kategori <?php echo $key['author']?> ?')">Delete</button>
+								<form action="<?php echo site_url('Admin/DeleteArticle')?>" method="post">
+									<input type="hidden" name= "id_article" class="form-control" value="<?php echo $key['id_article']; ?>">
+                                    <input type="hidden" name="nameimage" value="<?php echo $key['image_file']?>">
+									<button class="btn btn-danger" onclick="return confirm('yakin akan menghapus article ini?')">Delete</button>
 								</form>
 							</td>
 						</tr>
@@ -91,3 +94,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</tbody>
 				</table>
 			</div>
+
+<script>
+$(document).ready( function () {
+    $('.data').DataTable();
+} );
+</script>
