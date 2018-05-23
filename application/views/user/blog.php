@@ -57,16 +57,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		        <?php } ?>
 					<div class="panel panel-primary">
 		    	    	<div class="panel-heading"><?php echo $key['title']?></div>
-<<<<<<< HEAD
 		        		<?php echo "
 						<div class='panel-body'><img src='".base_url()."asset/imgblog/".$key['image_file']."' class='img-responsive' style='width:100%; height: 200px' alt='Image'></div>
 						"?>
-=======
-		        		
-		        		<?php echo "
-		        		<div class='panel-body'><img src='".base_url()."asset/imgblog/".$key['image_file']."' class='img-responsive' style='width:100%; height: 200px' alt='Image'></div>
-		        		"?>
->>>>>>> 9d800e704e338886e8b659e29a54a43904ff1c6f
 		        		<div class="panel-footer">Author : <?php echo $key['author'];?></div>
 								<form action="">
 								</form>

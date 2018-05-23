@@ -46,6 +46,9 @@ class Home extends CI_Controller{
             $this->form_validation->set_rules('username','Username','required');
             $this->form_validation->set_rules('password','Password','required');
             $this->form_validation->set_rules('name','Name','required');
+            $this->form_validation->set_rules('address','Address','required');
+            $this->form_validation->set_rules('telp','Telp','required');
+            $this->form_validation->set_rules('email','Email','required');
             
             
             if ($this->form_validation->run() == TRUE) {

@@ -82,12 +82,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <th>Stock</th>
                             <th>Category</th>
                             <th>Photo</th>
-<<<<<<< HEAD
 							<th style="text-align: center;">Edit</font></th>
                             <th style="text-align: center;">Delete</font></th>
-=======
-							<th colspan="2" style="text-align: center;">Aksi</font></th>
->>>>>>> 9d800e704e338886e8b659e29a54a43904ff1c6f
 						</tr>
 					</thead>
 					<tbody>
