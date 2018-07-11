@@ -21,6 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-lg-4">
         <div class="jumbotron" style="margin-top:150px">
             <h3>Form Login</h3><br>
+                <?php echo form_open('Home/loginpage');?>
                 <?php if (isset($_SESSION['success'])) {?>
                     <div class="alert alert-success"><?php echo $_SESSION['success'];?></div>
                 <?php } ?>

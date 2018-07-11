@@ -7,10 +7,10 @@ class User extends CI_Controller{
         parent::__construct();
         $this->load->model('articleuser');
         $this->load->model('itemuser');
-        if (!isset($_SESSION['user_logged'])) {
-            $this->session->set_flashdate("error","please login first");
-            redirect("home/loginpage");
-        }
+        // if (!isset($_SESSION['user_logged'])) {
+        //     $this->session->set_flashdata("error","please login first");
+        //     redirect("home/loginpage");
+        // }
     }
     public function profile(){
         $this->load->view('user/profile');

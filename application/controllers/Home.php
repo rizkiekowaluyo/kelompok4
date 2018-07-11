@@ -3,40 +3,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller{
 
+    function __construct()
+    {
+        parent::__construct();
+			$this->load->helper('url');
+			$this->load->model('user_model');
+    }
+
     public function index(){
+        $this->load->view('header');
         $this->load->view('user/home');
     }
 
     //fungsi untuk loginpage
     public function loginpage(){
-        if (isset($_POST['submit'])) {
+        // if (isset($_POST['submit'])) {
             $this->form_validation->set_rules('username','Username','required');
             $this->form_validation->set_rules('password','Password','required');
-            if ($this->form_validation->run() == TRUE) {
+            if ($this->form_validation->run() == FALSE) {
 
-                $username = $_POST['username'];
-                $password = $_POST['password'];
+                $this->load->view('loginpage');
+            }else {
+                $username = $this->input->post('username');
+				$password = $this->input->post('password');
 
-                $this->db->select('*');
-                $this->db->from('user');
-                $this->db->where(array('username' => $username, 'password' => $password));
-                $query = $this->db->get();
+                $id_user = $this->user_model->login($username,$password);
+				// foreach ($data['user'] as $check) {		
+					if($id_user){
+					
+                        $user_data = array(
+                            'id_user' => $id_user,
+                            'username' => $username,
+                            'logged_in' => true
+                        );
 
-                $user = $query->row();
-                if ($user->email) {
-                    $this->session->set_flashdata("success","You're Logged in");
+                        $this->session->set_userdata($user_data);
+                        var_dump($user_data);
+						// Set message
+                        $this->session->set_flashdata('user_loggedin', 'You are now logged in');
+                        redirect("user/profile");
+                    }else {
+                        $this->session->set_flashdata('login_failed', 'Login is invalid');
+                        redirect("home/loginpage","Refresh");
+                        // echo("tetew");
+                    }
+                // }
 
-                    $_SESSION['user_logged'] =TRUE;
-                    $_SESSION['username'] = $user->username;
-
-                    redirect("user/profile", "refresh");
-                }else {
-                    $this->session->set_flashdata("error", "No data in database");
-                    redirect("home/loginpage", "refresh");
-                }
-          
             }
-        }
+          
+            
+        // }
         
         $this->load->view('loginpage');
     }
@@ -82,6 +98,7 @@ class Home extends CI_Controller{
                         'email' => $email,
                         'photo'=> $photo);
                     $this->db->insert('user',$data);
+                    $this->session->set_userdata($data);
                     $this->session->set_flashdata("success","Your account has been registered");
                     redirect("home/registerpage","refresh");
                 }
@@ -100,8 +117,14 @@ class Home extends CI_Controller{
     }
 
     public function logout(){
-        unset($_SESSION);
-        redirect("home/loginpage","refresh");
+        $this->session->unset_userdata('logged_in');
+        $this->session->unset_userdata('user_id');
+        $this->session->unset_userdata('username');
+
+        // Set message
+        $this->session->set_flashdata('user_loggedout', 'Anda sudah log out');
+
+        redirect('home/loginpage');
     }
 
     public function loginadmin(){
@@ -124,7 +147,7 @@ class Home extends CI_Controller{
                     $_SESSION['admin_logged'] =TRUE;
                     $_SESSION['username'] = $admin->username;
 
-                    redirect("admin/dashboard", "refresh");
+                    redirect("admin/index", "refresh");
                 }else {
                     $this->session->set_flashdata("error", "No data in database");
                     redirect("home/loginadmin", "refresh");

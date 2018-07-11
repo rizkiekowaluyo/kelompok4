@@ -14,4 +14,9 @@ class Item extends CI_Model{
         $allitem = $this->db->query("select * from item");
         return $allitem->result_array();
     }
+
+    public function DeleteData($id_item)
+    {
+      $this->db->query("DELETE from item where id_item =".$id_item);
+    }
 }

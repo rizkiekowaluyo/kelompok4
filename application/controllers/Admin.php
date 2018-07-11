@@ -12,6 +12,13 @@ class Admin extends CI_Controller{
             redirect("admin/loginadmin");
         }
     }
+
+    public function index(){
+        $this->load->view('admin/header');
+        $this->load->view('admin/dashboard1');
+        $this->load->view('admin/footer');
+    }
+
     public function dashboard(){
         $cek = $this->db->where('is_active',1)->get('transaction');
         if($cek->num_rows()>0){
@@ -25,7 +32,7 @@ class Admin extends CI_Controller{
             $data['jumlah'] = 0;
         }
         
-        $this->load->view('admin/dashboard',$data);
+        // $this->load->view('admin/dashboard1',$data);
     }
 
     public function loginadmin(){
@@ -48,7 +55,7 @@ class Admin extends CI_Controller{
                     $_SESSION['admin_logged'] =TRUE;
                     $_SESSION['username'] = $admin->username;
 
-                    redirect("admin/dashboard", "refresh");
+                    redirect("admin/dashboard1", "refresh");
                 }else {
                     $this->session->set_flashdata("error", "No data in database");
                     redirect("admin/loginadmin", "refresh");
@@ -62,7 +69,9 @@ class Admin extends CI_Controller{
 
     public function addarticle(){
         $this->load->helper('form');
+        $this->load->view('admin/header');
         $this->load->view('admin/addarticle');
+        $this->load->view('admin/footer');
     }
 
     public function add_picture(){
@@ -95,19 +104,23 @@ class Admin extends CI_Controller{
 				'image_file'=>$image_file);
 
 			$this->article->InsertData($data, "article");
-			redirect('admin/dashboard');
+			redirect('admin/index');
 		}		
     }
 
     public function seearticle(){
         $data['dataarticle']= $this->article->seearticle();
+        $this->load->view('admin/header');
         $this->load->view('admin/seearticle',$data);
+        $this->load->view('admin/footer');
     }
 
 
     public function additem(){
         $this->load->helper('form');
+        $this->load->view('admin/header');
         $this->load->view('admin/additem');
+        $this->load->view('admin/footer');
     }
     public function add_item(){
         $id = $this->input->post('id_item');
@@ -138,12 +151,14 @@ class Admin extends CI_Controller{
                 'stock_item'=>$stock,
                 'photo' => $photo);
             $this->item->InsertData($data, "item");
-            redirect('admin/dashboard');
+            redirect('admin/index');
         }       
     }
     public function seeitem(){
         $data['dataitem']= $this->item->seeitem();
+        $this->load->view('admin/header');
         $this->load->view('admin/seeitem',$data);
+        $this->load->view('admin/footer');
     }
 
     public function DeleteArticle(){
@@ -154,4 +169,11 @@ class Admin extends CI_Controller{
 		redirect('admin/seearticle');
     }
     
+    public function DeleteItem(){
+        $nameimage = $this->input->post('nameimage');
+        $id_item = $this->input->post('id_item');
+        unlink('asset/imgitem/'.$nameimage);
+        $this->item->DeleteData($id_item);
+        redirect('admin/seeitem');
+    }
 }
