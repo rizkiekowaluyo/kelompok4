@@ -1,13 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-
-<br><br><br><br><br><br><br>
-<!-- <main role="main" class="container"> -->
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-8">
-        <table class="table table-striped table-bordered data">
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>SEE ITEM</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="card">
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered data">
                             <thead>
                                 <tr>			
                                     <th>ID Item</th>
@@ -34,14 +37,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <td><?php echo $key['category_item']; ?></td>
                                     <td><?php echo $key['photo']; ?></td>
                                     <td>
-                                        <form action="" method="post">
+                                        <form action="<?php echo site_url('Admin/EditItem')?>" method="post">
                                             <input type="hidden" name= "edit" class="form-control" value="<?php echo $key['id_item']; ?>">
                                             <button class="btn btn-warning">Edit</button>
                                         </form>
                                     </td>
                                     <td>
                                         <form action="<?php echo site_url('Admin/DeleteItem')?>" method="post">
-                                            <input type="hidden" name= "delete" class="form-control" value="<?php echo $key['id_item']; ?>">
+                                            <input type="hidden" name= "id_item" class="form-control" value="<?php echo $key['id_item']; ?>">
+                                            <input type="hidden" name="nameimage" value="<?php echo $key['photo']?>">
                                             <button class="btn btn-danger" onclick="return confirm('yakin akan menghapus kategori <?php echo $key['name']?> ?')">Delete</button>
                                         </form>
                                     </td>
@@ -50,9 +54,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
         </div>
     </div>
-<!-- </main> -->
+</section>
+<br><br>
 
 <script>
 $(document).ready( function () {

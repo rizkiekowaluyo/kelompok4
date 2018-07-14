@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
 
 
-                <button type="submit" id="submit" class="btn-primary form-control" name="submit" value="submit">Login</button> You're not registered? register <a href="<?php echo site_url('home/registerpage')?>">here</a>
+                <button type="submit" id="submit" class="btn-primary form-control" name="submit" value="submit">Login</button> You're not admin? login <a href="<?php echo site_url('home/loginpage')?>">here</a>
             </form>
         </div>
     </div>

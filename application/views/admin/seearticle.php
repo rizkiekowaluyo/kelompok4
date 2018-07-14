@@ -2,12 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<br><br><br><br><br><br><br>
-<main role="main" class="container">
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-8">
-        <table class="table table-striped table-bordered data">
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>SEE ARTICLE</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="card">
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered data">
                             <thead>
                                 <tr>			
                                     <th>ID Article</th>
@@ -47,9 +51,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
         </div>
     </div>
-</main>
+</section>
 
 <script>
 $(document).ready( function () {

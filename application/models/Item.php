@@ -19,4 +19,9 @@ class Item extends CI_Model{
     {
       $this->db->query("DELETE from item where id_item =".$id_item);
     }
+
+    public function GetById($id)
+    {
+      return $this->db->query("SELECT * FROM item WHERE id_item = '".$id."' ")->row();
+    }
 }

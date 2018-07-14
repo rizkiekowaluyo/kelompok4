@@ -176,4 +176,20 @@ class Admin extends CI_Controller{
         $this->item->DeleteData($id_item);
         redirect('admin/seeitem');
     }
+
+    public function EditItem(){
+		$id = $this->input->post('id');
+		$data['key'] = $this->item->getByID($id);
+        $this->load->helper('form');
+        $this->load->view('admin/header');
+        $this->load->view('admin/edititem', $data);
+        $this->load->view('admin/footer');
+    }
+    
+    /* USER MANAGEMENT */
+
+    public function seeuser(){
+        
+    }
+
 }
