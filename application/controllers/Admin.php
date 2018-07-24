@@ -7,6 +7,7 @@ class Admin extends CI_Controller{
         parent::__construct();
         $this->load->model('article');
         $this->load->model('item');
+        $this->load->model('user');
         if (!isset($_SESSION['admin_logged'])) {
             $this->session->set_flashdata("error","please login first");
             redirect("admin/loginadmin");
@@ -161,6 +162,17 @@ class Admin extends CI_Controller{
         $this->load->view('admin/footer');
     }
 
+    public function toedititem()
+	{
+		$this->load->helper('form');
+		$id_item = $this->input->post('edit');
+        $data['detailitem'] = $this->item->GetById($id_item);
+        $this->load->helper('form');
+        $this->load->view('admin/header');
+        $this->load->view('admin/edititem', $data);
+        $this->load->view('admin/footer');
+    }
+
     public function DeleteArticle(){
         $nameimage = $this->input->post('nameimage');
 		$id_article = $this->input->post('id_article');
@@ -178,18 +190,94 @@ class Admin extends CI_Controller{
     }
 
     public function EditItem(){
-		$id = $this->input->post('id');
-		$data['key'] = $this->item->getByID($id);
-        $this->load->helper('form');
-        $this->load->view('admin/header');
-        $this->load->view('admin/edititem', $data);
-        $this->load->view('admin/footer');
+        $id = $this->input->post('id_item');
+        $name = $this->input->post('name');
+        $vendor = $this->input->post('vendor');
+        $price = $this->input->post('price');
+        $stock = $this->input->post('stock');
+        $description = $this->input->post('description_name');
+        $photo = $_FILES['photo']['name'];
+        if($photo=''){}else {
+            $config['upload_path'] = './asset/imgitem';
+            $config['allowed_types'] = 'gif|jpg|png';
+            
+            $this->load->library('upload', $config);
+            
+            if ( ! $this->upload->do_upload('photo')){
+                $error = array('error' => $this->upload->display_errors());
+            }
+            else{
+                $photo = $this->upload->data('file_name');
+            }
+            $data = array(
+                'id_item' => $id,
+                'name' => $name,
+                'description_name' =>$description,
+                'vendor' => $vendor,
+                'price' => $price,
+                'stock_item'=>$stock,
+                'photo' => $photo);
+            $this->item->updateWithImage($data, "item");
+            redirect('admin/index');
+        }
     }
     
     /* USER MANAGEMENT */
 
-    public function seeuser(){
-        
+    public function adduser(){
+        $this->load->helper('form');
+        $this->load->view('admin/header');
+        $this->load->view('admin/adduser');
+        $this->load->view('admin/footer');
     }
 
+    public function seeuser(){
+        $data['datauser']= $this->user->seeuser();
+        $this->load->view('admin/header');
+        $this->load->view('admin/seeuser',$data);
+        $this->load->view('admin/footer');
+    }
+
+    public function DeleteUser(){
+        $nameimage = $this->input->post('nameimage');
+        $id_user = $this->input->post('id_user');
+        unlink('asset/imguser/'.$nameimage);
+        $this->user->DeleteData($id_user);
+        redirect('admin/seeuser');
+    }
+
+    public function add_user(){
+        $id = $this->input->post('id_user');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $name = $this->input->post('name');
+        $address = $this->input->post('address');
+        $telp = $this->input->post('telp');
+        $email = $this->input->post('email');
+        $photo = $_FILES['photo']['name'];
+        if($photo=''){}else {
+            $config['upload_path'] = './asset/imguser';
+            $config['allowed_types'] = 'gif|jpg|png';
+            
+            $this->load->library('upload', $config);
+            
+            if ( ! $this->upload->do_upload('photo')){
+                $error = array('error' => $this->upload->display_errors());
+            }
+            else{
+                $photo = $this->upload->data('file_name');
+            }
+            $data = array(
+                'id_user' => $id,
+                'username' => $username,
+                'password' =>$password,
+                'name' => $name,
+                'address' => $address,
+                'telp'=>$telp,
+                'email'=>$email,
+                'photo' => $photo);
+            $this->user->InsertData($data, "user");
+            redirect('admin/index');
+        }       
+    }
 }

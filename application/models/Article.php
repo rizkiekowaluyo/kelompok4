@@ -21,4 +21,6 @@ class Article extends CI_Model{
     {
       $this->db->query("DELETE from article where id_article =".$id_article);
     }
+
+    
 }

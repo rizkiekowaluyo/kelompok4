@@ -172,10 +172,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?php echo site_url('admin/addarticle') ?>">Add User</a>
+                                <a href="<?php echo site_url('admin/adduser') ?>">Add User</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('admin/seearticle') ?>">Manage User</a>
+                                <a href="<?php echo site_url('admin/seeuser') ?>">Manage User</a>
                             </li>
                         </ul>
                     </li>
