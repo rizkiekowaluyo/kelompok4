@@ -116,6 +116,55 @@ class Admin extends CI_Controller{
         $this->load->view('admin/footer');
     }
 
+     public function toeditarticle()
+    {
+        $this->load->helper('form');
+        $id_article = $this->input->post('edit');
+        $data['detailarticle'] = $this->article->GetById($id_article);
+        $this->load->helper('form');
+        $this->load->view('admin/header');
+        $this->load->view('admin/editarticle', $data);
+        $this->load->view('admin/footer');
+    }
+
+    public function DeleteArticle(){
+        $nameimage = $this->input->post('nameimage');
+        $id_article = $this->input->post('id_article');
+        unlink('asset/imgblog/'.$nameimage);
+        $this->article->DeleteData($id_article);
+        redirect('admin/seearticle');
+    }
+
+    public function EditArticle(){
+        $id = $this->input->post('id_article');
+        $author = $this->input->post('author');
+        $date = $this->input->post('date');
+        $title = $this->input->post('title');
+        $content = $this->input->post('content');
+        $image_file = $_FILES['image_file']['name'];
+        if($image_file=''){}else {
+            $config['upload_path'] = './asset/imgblog';
+            $config['allowed_types'] = 'gif|jpg|png';
+            
+            $this->load->library('upload', $config);
+            
+            if ( ! $this->upload->do_upload('image_file')){
+                $error = array('error' => $this->upload->display_errors());
+            }
+            else{
+                $photo = $this->upload->data('file_name');
+            }
+            $data = array(
+                'id_article' => $id,
+                'author' => $author,
+                'date' =>$date,
+                'title' => $title,
+                'content' => $content,
+                'image_file' => $image_file);
+            $this->article->updateWithImage($data, "article");
+            redirect('admin/index');
+        }
+    }
 
     public function additem(){
         $this->load->helper('form');
@@ -171,14 +220,6 @@ class Admin extends CI_Controller{
         $this->load->view('admin/header');
         $this->load->view('admin/edititem', $data);
         $this->load->view('admin/footer');
-    }
-
-    public function DeleteArticle(){
-        $nameimage = $this->input->post('nameimage');
-		$id_article = $this->input->post('id_article');
-		unlink('asset/imgblog/'.$nameimage);
-		$this->article->DeleteData($id_article);
-		redirect('admin/seearticle');
     }
     
     public function DeleteItem(){
@@ -238,11 +279,22 @@ class Admin extends CI_Controller{
         $this->load->view('admin/footer');
     }
 
+    public function toedituser()
+    {
+        $this->load->helper('form');
+        $id = $this->input->post('edit');
+        $data['detailuser'] = $this->user->GetById($id);
+        $this->load->helper('form');
+        $this->load->view('admin/header');
+        $this->load->view('admin/edituser', $data);
+        $this->load->view('admin/footer');
+    }
+
     public function DeleteUser(){
         $nameimage = $this->input->post('nameimage');
-        $id_user = $this->input->post('id_user');
+        $id = $this->input->post('id');
         unlink('asset/imguser/'.$nameimage);
-        $this->user->DeleteData($id_user);
+        $this->user->DeleteData($id);
         redirect('admin/seeuser');
     }
 
@@ -279,5 +331,40 @@ class Admin extends CI_Controller{
             $this->user->InsertData($data, "user");
             redirect('admin/index');
         }       
+    }
+
+    public function EditUser(){
+        $id = $this->input->post('id');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $name = $this->input->post('name');
+        $address = $this->input->post('address');
+        $telp = $this->input->post('telp');
+        $email = $this->input->post('email');
+        $photo = $_FILES['photo']['name'];
+        if($photo=''){}else {
+            $config['upload_path'] = './asset/imguser';
+            $config['allowed_types'] = 'gif|jpg|png';
+            
+            $this->load->library('upload', $config);
+            
+            if ( ! $this->upload->do_upload('photo')){
+                $error = array('error' => $this->upload->display_errors());
+            }
+            else{
+                $photo = $this->upload->data('file_name');
+            }
+            $data = array(
+                'id' => $id,
+                'username' => $username,
+                'password' => $password,
+                'name' => $name,
+                'address' =>$address,
+                'telp' => $telp,
+                'email'=>$email,
+                'photo' => $photo);
+            $this->user->updateWithImage($data, "user");
+            redirect('admin/index');
+        }
     }
 }

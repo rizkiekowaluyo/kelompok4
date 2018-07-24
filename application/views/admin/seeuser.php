@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <tbody>
                                 <?php foreach ($datauser as $key) {?>
                                 <tr>				
-                                    <td><?php echo $key['id_user']; ?></td>
+                                    <td><?php echo $key['id']; ?></td>
                                     <td><?php echo $key['username']; ?></td>
                                     <td><?php echo $key['password']; ?></td>
                                     <td><?php echo $key['name']; ?></td>
@@ -37,14 +37,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <td><?php echo $key['email']; ?></td>
                                     <td><?php echo $key['photo']; ?></td>
                                     <td>
-                                        <form action="#" method="post">
-                                            <input type="hidden" name= "edit" class="form-control" value="#">
+                                        <form action="<?php echo site_url('Admin/toedituser')?>" method="post">
+                                            <input type="hidden" name= "edit" class="form-control" value="<?php echo $key['id']; ?>">
                                             <button class="btn btn-warning">Edit</button>
                                         </form>
                                     </td>
                                     <td>
                                         <form action="<?php echo site_url('Admin/DeleteUser')?>" method="post">
-                                            <input type="hidden" name= "id_user" class="form-control" value="<?php echo $key['id_user']; ?>">
+                                            <input type="hidden" name= "id" class="form-control" value="<?php echo $key['id']; ?>">
                                             <input type="hidden" name="nameimage" value="<?php echo $key['photo']?>">
                                             <button class="btn btn-danger" onclick="return confirm('yakin akan menghapus kategori <?php echo $key['name']?> ?')">Delete</button>
                                         </form>

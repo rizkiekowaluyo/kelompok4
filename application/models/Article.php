@@ -22,5 +22,18 @@ class Article extends CI_Model{
       $this->db->query("DELETE from article where id_article =".$id_article);
     }
 
-    
+    public function GetById($id_article)
+    {
+       $query = $this->db->query("SELECT * from article where id_article ='$id_article'");
+       return $query->result_array();
+    }
+
+    public function updateWithImage($data){
+        // var_dump($data);
+        $this->db->query("update article set id_article=".$data['id_article'].",
+        
+        author='".$data['author']."', date='".$data['date']."', title='".$data['title']."',content='".$data['content']."',
+        
+        image_file='".$data['image_file']."' where id_article = '".$data['id_article']."'");
+    }
 }

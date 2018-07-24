@@ -21,7 +21,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-lg-4">
         <div class="jumbotron" style="margin-top:150px">
             <h3>Form Login</h3><br>
-                <?php echo form_open('Home/loginpage');?>
                 <?php if (isset($_SESSION['success'])) {?>
                     <div class="alert alert-success"><?php echo $_SESSION['success'];?></div>
                 <?php } ?>
@@ -34,16 +33,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 
                 <div class="form-group">
                     <label for="">Password:</label> <br>
-                    <input type="password" class="form-control" name="password"> <br>                   
+                    <input type="password" class="form-control" name="password"> <br>
                 </div>
 
-
                 <button type="submit" id="submit" class="btn-primary form-control" name="submit" value="submit">Login</button> You're not registered? register <a href="<?php echo site_url('home/registerpage')?>">here</a>
-                if you're admin login here <a href="<?php echo site_url('home/loginadmin')?>"> here </a>
             </form>
         </div>
     </div>
 </div>
 </body>
 </html>
-        

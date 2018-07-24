@@ -31,7 +31,9 @@ class Item extends CI_Model{
     public function updateWithImage($data){
         // var_dump($data);
         $this->db->query("update item set id_item=".$data['id_item'].",
-        name=".$data['name'].",description_name='".$data['description_name']."', vendor='".$data['vendor']."',price='".$data['price']."', stock_item='".$data['stock_item']."',
+        
+        name='".$data['name']."', description_name='".$data['description_name']."', vendor='".$data['vendor']."',price='".$data['price']."', stock_item='".$data['stock_item']."',
+        
         photo='".$data['photo']."' where id_item = '".$data['id_item']."'");
     }
     

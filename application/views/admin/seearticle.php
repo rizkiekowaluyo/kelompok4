@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <td><?php echo $key['content']; ?></td>
                                     <td><?php echo $key['image_file']; ?></td>
                                     <td>
-                                        <form action="" method="post">
+                                        <form action="<?php echo site_url('Admin/toeditarticle')?>" method="post">
                                             <input type="hidden" name= "edit" class="form-control" value="<?php echo $key['id_article']; ?>">
                                             <button class="btn btn-warning">Edit</button>
                                         </form>

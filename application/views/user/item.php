@@ -1,69 +1,107 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Login Page</title>
-</head>
-
-<body style="background-color:#2d2d2d">
-
-    <!-- navigasi bar menu diatas  -->
-    <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-        </button>
-        <a class="navbar-brand" href="#">Bengkelin</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="<?php echo site_url('home/aboutus')?>">About Us</a></li>
-            <li><a href="<?php echo site_url('user/item')?>">List Item</a></li>
-            <li><a href="<?php echo site_url('user/blog')?>">Blog</a></li>
-            <li><a href="<?php echo base_url();?>index.php/home/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-        </ul>
-        </div>
-    </div>
-    </nav>
-
 <!--Beginning of Box-->
+<br><br>
 <div class="container">
 		<div class="row">
 		<?php foreach ($item_array as $key) {
 			$increment = 3;
 				if($increment%3==0){ ?>
+
 					<div class="container">
 					<div class="row">
-	    			<div class="col-sm-4">
+	    			<div class="col-sm-3">
 		    
 		        <?php } ?>
-					<div class="panel panel-primary">
+					<div class="panel panel-danger">
 		    	    	<div class="panel-heading"><?php echo $key['name']?></div>
 		        		
 		        		<?php echo "
 		        		<div class='panel-body'><img src='".base_url()."asset/imgitem/".$key['photo']."' class='img-responsive' style='width:100%; height: 200px' alt='Image'></div>
 		        		"?>
+
 		        		<div class="panel-footer">Vendor : <?php echo $key['vendor'];?></div>
 		        		<div class="panel-footer">Harga : <?php echo $key['price'];?></div>
+
 								<form action="">
+
 								</form>
-								<button type="button" class="btn btn-default btn-blog" onclick="return confirm('yakin akan pesan ini?')"><a href="<?=site_url().'/Transaksi/processtransaction/'.$key['id_item']?>">Order</a></button>
+								
+								<a id="detail_item" href="" data-toggle="modal" data-target="#detail" data-id="<?php echo $key['id_item']?>" data-name="<?php echo $key['name']?>" data-desc="<?php echo $key['description_name']?>" data-ven="<?php echo $key['vendor']?>" data-stock="<?php echo $key['stock_item']?>" data-price="<?php echo $key['price']?>" data-photo="<?php echo $key['photo']?>">
+								<button type="button" class="btn btn-info btn-lg" >Detail</button>
+								</a>
+								
+								<button type="button" class="btn btn-info btn-lg" onclick="return confirm('yakin akan pesan ini?')"><a href="<?=site_url().'/Transaksi/processtransaction/'.$key['id_item']?>">Order</a></button>
 
 								
+								<div id="detail" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+										<!-- konten modal-->
+										<div class="modal-content">
+											<!-- heading modal -->
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title">Detail</h4>
+											</div>
+											<!-- body modal -->
+											<form id="form" enctype="multipart/form-data">
+												<div class="modal-body" id="modal-detail">
+													<div class="form-group">
+														<label class="control-label" for="name">Nama</label>
+														<input type="text" name="name" class="form-control" id="name" readonly>
+													</div>
+													<div class="form-group">
+														<label class="control-label" for="photo">Gambar</label>
+														<div>
+															<img src="" width="200px" id="photo">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label" for="vendor">Vendor</label>
+														<input type="text" name="vendor" class="form-control" id="vendor"readonly>
+													</div>
+													<div class="form-group">
+														<label class="control-label" for="desc">Deskripsi</label>
+														<input type="text" name="desc" class="form-control" id="desc"readonly>
+													</div>
+													<div class="form-group">
+														<label class="control-label" for="stock">Stok</label>
+														<input type="text" name="stock" class="form-control" id="stock" readonly>
+													</div>
+													<div class="form-group">
+														<label class="control-label" for="price">Price</label>
+														<input type="text" name="price" class="form-control" id="price"readonly>
+													</div>
+												</div>
+											</form>	
+											<!-- footer modal -->
+											<div class="modal-footer">
+												<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Tutup Modal</button> -->
+
+												<button type="button" class="btn btn-info btn-lg" onclick="return confirm('yakin akan pesan ini?')"><a href="<?=site_url().'/Transaksi/processtransaction/'.$key['id_item']?>">Order</a></button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<script type="text/javascript">
+									$(document).on("click", "#detail_item", function(){
+										var id = $(this).data('id');
+										var name = $(this).data('name');
+										var desc = $(this).data('desc');
+										var vendor = $(this).data('ven');
+										var stock = $(this).data('stock');
+										var price = $(this).data('price');
+										var photo = $(this).data('photo');
+										
+										$("#modal-detail #name").val(name);
+										$("#modal-detail #vendor").val(vendor);
+										$("#modal-detail #desc").val(desc);
+										$("#modal-detail #stock").val(stock);
+										$("#modal-detail #price").val(price);
+										$("#modal-detail #photo").attr("src", "../../asset/imgitem/"+photo);
+									})
+								</script>
+
+
 								<!-- <button type="button" class="btn btn-default btn-blog"><a href="<?php echo site_url('home/blog_detail/'.$key['id'])?>">View Detail</a></button>
 								<button type="button" class="btn btn-default btn-blog"><a href="<?php echo site_url('home/blog_create/')?>">Create Data</a></button> -->
 								<!-- <form action="<?php echo site_url('Home/DeleteData') ?>" method="post">
@@ -76,13 +114,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		        			        <button class="btn btn-success btn-blog" style="margin-bottom: 10px;">Edit Data</button>
 		        		        </form> -->
 		        		<HR>
-		        		<center>
-		        	
-		        		</center>
 		    		</div>
+
 		    		</div>
 				<?php $increment = $increment + 1;
+
 			    if($increment%3==0){ ?>
+
 		    		</div>
 		    		</div>
 			    	<br>
