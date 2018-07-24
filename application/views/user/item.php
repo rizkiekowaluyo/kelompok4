@@ -1,9 +1,29 @@
+<div class="container">
+    
+    <!-- <div class="col-lg-4"> -->
+        <div class="jumbotron" style="margin-top:5px">
+            <h3>Profile</h3><br>
+                <?php if (isset($_SESSION['success'])) {?>
+                    <div class="alert alert-success"><?php echo $_SESSION['success'];?></div>
+                <?php } ?>
+                <?php echo validation_errors('<div class="alert alert-danger">','</div>');?>
+                hello, <?php echo $_SESSION['username'] ?>
+                		<?php echo $_SESSION['id']?>
+														<?php echo $_SESSION['name']?>
+														<?php echo $_SESSION['address']?>;?>
+        </div>
+    <!-- </div>                -->
+</div>
+</body>
+</html>
+
 <!--Beginning of Box-->
 <br><br>
 <div class="container">
 		<div class="row">
 		<?php foreach ($item_array as $key) {
 			$increment = 3;
+			
 				if($increment%3==0){ ?>
 
 					<div class="container">
@@ -11,6 +31,7 @@
 	    			<div class="col-sm-3">
 		    
 		        <?php } ?>
+
 					<div class="panel panel-danger">
 		    	    	<div class="panel-heading"><?php echo $key['name']?></div>
 		        		
@@ -24,17 +45,23 @@
 								<form action="">
 
 								</form>
+
+									
 								
-								<a id="detail_item" href="" data-toggle="modal" data-target="#detail" data-id="<?php echo $key['id_item']?>" data-name="<?php echo $key['name']?>" data-desc="<?php echo $key['description_name']?>" data-ven="<?php echo $key['vendor']?>" data-stock="<?php echo $key['stock_item']?>" data-price="<?php echo $key['price']?>" data-photo="<?php echo $key['photo']?>">
+								<a id="detail_item" href="" data-toggle="modal" data-target="#detail" data-id="<?php echo $key['id_item']?>" data-name="<?php echo $key['name']?>" data-desc="<?php echo $key['description_name']?>" data-ven="<?php echo $key['vendor']?>" data-stock="<?php echo $key['stock_item']?>" data-price="<?php echo $key['price']?>" data-photo="<?php echo $key['photo']?>" >
 								<button type="button" class="btn btn-info btn-lg" >Detail</button>
 								</a>
-								
-								<button type="button" class="btn btn-info btn-lg" onclick="return confirm('yakin akan pesan ini?')"><a href="<?=site_url().'/Transaksi/processtransaction/'.$key['id_item']?>">Order</a></button>
 
+								
+								<!--
+								<button type="button" class="btn btn-info btn-lg" onclick="return confirm('yakin akan pesan ini?')"><a href="<?=site_url().'/Transaksi/processtransaction/'.$key['id_item']?>">Order</a></button>
+								-->
 								
 								<div id="detail" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 										<!-- konten modal-->
+
+										<?php echo form_open_multipart('admin/add_transaction'); ?>
 										<div class="modal-content">
 											<!-- heading modal -->
 											<div class="modal-header">
@@ -47,6 +74,13 @@
 													<div class="form-group">
 														<label class="control-label" for="name">Nama</label>
 														<input type="text" name="name" class="form-control" id="name" readonly>
+														
+														<!--
+														data-idUsr="<?php echo $key1['id']?>" data-namaUsr="<?php echo $key1['name']?>" data-alamatUsr="<?php echo $key1['address']?>"
+														<input type="text" name="id_user" class="form-control" id="id_user" readonly>
+														<input type="text" name="nama_user" class="form-control" id="nama_user" readonly>
+														<input type="text" name="alamat_user" class="form-control" id="alamat_user" readonly>
+														-->
 													</div>
 													<div class="form-group">
 														<label class="control-label" for="photo">Gambar</label>
@@ -91,12 +125,18 @@
 										var stock = $(this).data('stock');
 										var price = $(this).data('price');
 										var photo = $(this).data('photo');
+										var id_user = $(this).data('idUsr');
+										var nama_user = $(this).data('namaUsr');
+										var alamat_user = $(this).data('alamatUsr');
 										
 										$("#modal-detail #name").val(name);
 										$("#modal-detail #vendor").val(vendor);
 										$("#modal-detail #desc").val(desc);
 										$("#modal-detail #stock").val(stock);
 										$("#modal-detail #price").val(price);
+										$("#modal-detail #id_user").val(id_user);
+										$("#modal-detail #nama_user").val(nama_user);
+										$("#modal-detail #alamat_user").val(alamat_user);
 										$("#modal-detail #photo").attr("src", "../../asset/imgitem/"+photo);
 									})
 								</script>
@@ -128,3 +168,8 @@
 			<?php } ?>
 	</div>
 </div>
+														
+														
+														
+
+														

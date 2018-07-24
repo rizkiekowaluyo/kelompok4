@@ -180,6 +180,17 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">view_list</i>
+                            <span>Transaction</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="<?php echo site_url('admin/seetransaction') ?>">Manage Transaction</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="pages/changelogs.html">
                             <i class="material-icons">update</i>
                             <span>Changelogs</span>

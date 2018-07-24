@@ -25,5 +25,11 @@ class User_model extends CI_Model{
         }
         
     }
+
+    public function getUserQueryArray()
+    {
+      $query= $this->db->query("Select * from user");
+      return $query->result_array();
+    }
         
 }

@@ -35,6 +35,9 @@ class Home extends CI_Controller{
 
                     $_SESSION['user_logged'] =TRUE;
                     $_SESSION['username'] = $admin->username;
+                    $_SESSION['id'] = $admin->id;
+                    $_SESSION['name'] = $admin->name;
+                    $_SESSION['address'] = $admin->address;
 
                     redirect("user/profile", "refresh");
                 }else {

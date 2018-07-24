@@ -7,6 +7,7 @@ class User extends CI_Controller{
         parent::__construct();
         $this->load->model('articleuser');
         $this->load->model('itemuser');
+        $this->load->model('user_model');
         // if (!isset($_SESSION['user_logged'])) {
         //     $this->session->set_flashdata("error","please login first");
         //     redirect("home/loginpage");
@@ -42,7 +43,9 @@ class User extends CI_Controller{
 
     public function item(){
         $data['item_array']=$this->itemuser->getItemQueryArray();
+        $data['user_array']=$this->user_model->getUserQueryArray();
         $this->load->view('user/header');
         $this->load->view('user/item',$data);
     }
+
 }

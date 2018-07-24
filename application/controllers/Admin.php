@@ -8,6 +8,7 @@ class Admin extends CI_Controller{
         $this->load->model('article');
         $this->load->model('item');
         $this->load->model('user');
+        $this->load->model('transaksi');
         if (!isset($_SESSION['admin_logged'])) {
             $this->session->set_flashdata("error","please login first");
             redirect("admin/loginadmin");
@@ -172,6 +173,7 @@ class Admin extends CI_Controller{
         $this->load->view('admin/additem');
         $this->load->view('admin/footer');
     }
+    
     public function add_item(){
         $id = $this->input->post('id_item');
         $name = $this->input->post('name');
@@ -367,4 +369,79 @@ class Admin extends CI_Controller{
             redirect('admin/index');
         }
     }
+
+    /* TRANSAKSI */
+
+    public function seetransaction(){
+        $data['datatransaction']= $this->transaksi->seetransaction();
+        $this->load->view('admin/header');
+        $this->load->view('admin/seetransaction',$data);
+        $this->load->view('admin/footer');
+    }
+
+    public function toedittransaction()
+    {
+        $this->load->helper('form');
+        $id_transaksi = $this->input->post('edit');
+        $data['detailtransaction'] = $this->transaksi->GetById($id_transaksi);
+        $this->load->helper('form');
+        $this->load->view('admin/header');
+        $this->load->view('admin/edittransaction', $data);
+        $this->load->view('admin/footer');
+    }
+
+    public function EditTransaction(){
+        $id_transaksi = $this->input->post('id_transaksi');
+        $id_barang = $this->input->post('id_barang');
+        $nama_barang = $this->input->post('nama_barang');
+        $id_user = $this->input->post('id_user');
+        $nama_user = $this->input->post('nama_user');
+        $alamat_user = $this->input->post('alamat_user');
+        $harga = $this->input->post('harga');
+        $status = $this->input->post('status');
+        
+            $data = array(
+                'id_transaksi' => $id_transaksi,
+                'id_barang' => $id_barang,
+                'nama_barang' => $nama_barang,
+                'id_user' => $id_user,
+                'nama_user' =>$nama_user,
+                'alamat_user' => $alamat_user,
+                'harga'=>$harga,
+                'status' => $status);
+            $this->transaksi->updateWithImage($data, "transaksi");
+            redirect('admin/index');
+        }
+    
+
+    public function DeleteTransaction(){
+        
+        $id_transaksi = $this->input->post('id_transaksi');
+        $this->transaksi->DeleteData($id_transaksi);
+        redirect('admin/seetransaction');
+    }
+
+    public function add_transaction(){
+        $id_transaksi = $this->input->post('id_transaksi');
+        $id_barang = $this->input->post('id_barang');
+        $nama_barang = $this->input->post('nama_barang');
+        $id_user = $this->input->post('id_user');
+        $alamat_user = $this->input->post('alamat_user');
+        $harga = $this->input->post('harga');
+        $status = $this->input->post('status');
+        
+            $data = array(
+                'id_transaksi' => $id_transaksi,
+                'id_barang' => $id_barang,
+                'nama_barang' =>$nama_barang,
+                'id_user' => $id_user,
+                'nama_user' => $nama_user,
+                'alamat_user'=>$alamat_user,
+                'harga'=>$harga,
+                'status' => $status);
+            $this->transaksi->InsertData($data, "transaksi");
+            redirect('admin/index');
+    
+    }       
+    
 }
