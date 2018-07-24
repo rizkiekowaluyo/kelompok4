@@ -54,6 +54,7 @@ class Home extends CI_Controller{
             $this->form_validation->set_rules('address','Address','required');
             $this->form_validation->set_rules('telp','Telp','required');
             $this->form_validation->set_rules('email','Email','required');
+            $this->form_validation->set_rules('photo','Photo','required');
             
             
             if ($this->form_validation->run() == TRUE) {
@@ -66,7 +67,7 @@ class Home extends CI_Controller{
                 $photo = $_FILES['photo']['name'];
 
                 if($photo=''){}else {
-                    $config['upload_path'] = './asset';
+                    $config['upload_path'] = './asset/imguser';
                     $config['allowed_types'] = 'gif|jpg|png';
                     
                     $this->load->library('upload', $config);
@@ -90,6 +91,7 @@ class Home extends CI_Controller{
                     $this->session->set_userdata($data);
                     $this->session->set_flashdata("success","Your account has been registered");
                     redirect("home/registerpage","refresh");
+                    //var_dump($data);
                 }
             }
         }

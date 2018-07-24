@@ -1,73 +1,127 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Login V19</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Register Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->  
+    <link rel="icon" type="image/png" href="<?php echo base_url().'asset/login/images/icons/favicon.ico'?>"/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/login/vendor/bootstrap/css/bootstrap.min.css'?>">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css'?>">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css'?>">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/login/vendor/animate/animate.css'?>">
+<!--===============================================================================================-->  
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/login/vendor/css-hamburgers/hamburgers.min.css'?>">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/login/vendor/animsition/css/animsition.min.css'?>">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/login/vendor/select2/select2.min.css'?>">
+<!--===============================================================================================-->  
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/login/vendor/daterangepicker/daterangepicker.css'?>">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/login/css/util.css'?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/login/css/main.css'?>">
+<!--===============================================================================================-->
 </head>
-<body style="background-color:#2d2d2d">
-<div class="container">
-    <div class="col-lg-4"></div>
-        <div class="col-lg-5">
-            <div class="jumbotron" style="margin-top:150px">
-                <h3>Registration Form</h3>
-                <?php echo form_open_multipart('Home/registerpage'); ?>
-                <?php if (isset($_SESSION['success'])) {?>
-                    <div class="alert alert-success"><?php echo $_SESSION['success'];?></div>
-                <?php } ?>
-                <?php echo validation_errors('<div class="alert alert-danger">','</div>');?>
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="">Username:</label> <br>
-                        <input type="text" class="form-control" name="username">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Password:</label> <br>
-                        <input type="password" class="form-control" name="password">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Name:</label> <br>
-                        <input type="text" class="form-control" name="name"> 
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Address:</label> <br>
-                        <input type="text" class="form-control" name="address">
-                    </div>
+<body>
+    
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+                <form class="login100-form validate-form" method="post">
+                    <span class="login100-form-title p-b-33">
+                        Account Registration
+                    </span>
                     
-                    <div class="form-group">
-                        <label for="">Telp:</label> <br>
-                        <input type="text" class="form-control" name="telp">
+                    <?php if (isset($_SESSION['success'])) {?>
+                    <div class="alert alert-success"><?php echo $_SESSION['success'];?></div>
+                    <?php } ?>
+                    <?php echo validation_errors('<div class="alert alert-danger">','</div>');?>
+
+                    <div class="wrap-input100 validate-input" data-validate = "Username is required">
+                        <input class="input100" type="text" name="username" placeholder="Username">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="">Email:</label> <br>
-                        <input type="text" class="form-control" name="email">
+                    <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="password" placeholder="Password">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="">Photo:</label>
-                        <input type="file" class="form-control" name="photo" size="20"> <br>
+                    <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
+                        <input class="input100" type="text" name="name" placeholder="Name">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
                     </div>
 
+                    <div class="wrap-input100 rs1 validate-input" data-validate="Address is required">
+                        <input class="input100" type="text" name="address" placeholder="Address">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
 
-                    <input type="submit" class="btn-primary form-control" name="submit"><br>
-                    <button type="button" class="btn btn-default"><a href="<?php echo site_url('home/index')?>">Back</a></button>
-                    You're a member? login <a href="<?php echo site_url('home/loginpage')?>">here</a>
+                    <div class="wrap-input100 rs1 validate-input" data-validate="Telp is required">
+                        <input class="input100" type="text" name="telp" placeholder="Phone Number">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+
+                    <div class="wrap-input100 rs1 validate-input" data-validate="E-mail is required">
+                        <input class="input100" type="text" name="email" placeholder="E-mail">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+
+                    <div class="wrap-input100 rs1 validate-input">
+                        <input class="input100" type="file" name="photo">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn m-t-20">
+                        <button type="submit" id="submit" name="submit" value="submit" class="login100-form-btn">
+                            Register
+                        </button>
+                    </div>
+
+                    <div class="text-center">
+                        <span class="txt1">
+                            Already Have an Account?
+                        </span>
+
+                        <a href="<?php echo site_url('home/loginpage')?>" class="txt2 hov1">
+                            Log In
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
-</div>
+    </div>
+    
+
+    
+<!--===============================================================================================-->
+    <script src="<?php echo base_url().'asset/login/vendor/jquery/jquery-3.2.1.min.js'?>"></script>
+<!--===============================================================================================-->
+    <script src="<?php echo base_url().'asset/login/vendor/animsition/js/animsition.min.js'?>"></script>
+<!--===============================================================================================-->
+    <script src="<?php echo base_url().'asset/login/vendor/bootstrap/js/popper.js'?>"></script>
+    <script src="<?php echo base_url().'asset/login/vendor/bootstrap/js/bootstrap.min.js'?>"></script>
+<!--===============================================================================================-->
+    <script src="<?php echo base_url().'asset/login/vendor/select2/select2.min.js'?>"></script>
+<!--===============================================================================================-->
+    <script src="<?php echo base_url().'asset/login/vendor/daterangepicker/moment.min.js'?>"></script>
+    <script src="<?php echo base_url().'asset/login/vendor/daterangepicker/daterangepicker.js'?>"></script>
+<!--===============================================================================================-->
+    <script src="<?php echo base_url().'asset/login/vendor/countdowntime/countdowntime.js'?>"></script>
+<!--===============================================================================================-->
+    <script src="<?php echo base_url().'asset/login/js/main.js'?>"></script>
+
 </body>
 </html>
