@@ -35,7 +35,7 @@ class Home extends CI_Controller{
 
                     $_SESSION['user_logged'] =TRUE;
                     $_SESSION['username'] = $admin->username;
-                    $_SESSION['id'] = $admin->id;
+                    $_SESSION['id_user'] = $admin->id_user;
                     $_SESSION['name'] = $admin->name;
                     $_SESSION['address'] = $admin->address;
 
@@ -48,7 +48,7 @@ class Home extends CI_Controller{
         }
         $this->load->view('loginpage');
     }
-
+    //untuk register
     public function registerpage(){
         if (isset($_POST['submit'])) {
             $this->form_validation->set_rules('username','Username','required');
@@ -70,7 +70,7 @@ class Home extends CI_Controller{
                 $photo = $_FILES['photo']['name'];
 
                 if($photo=''){}else {
-                    $config['upload_path'] = './asset/imguser';
+                    $config['upload_path'] = './asset/';
                     $config['allowed_types'] = 'gif|jpg|png';
                     
                     $this->load->library('upload', $config);
@@ -94,7 +94,7 @@ class Home extends CI_Controller{
                     $this->session->set_userdata($data);
                     $this->session->set_flashdata("success","Your account has been registered");
                     redirect("home/registerpage","refresh");
-                    //var_dump($data);
+                    var_dump($data);
                 }
             }
         }

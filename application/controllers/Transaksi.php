@@ -7,7 +7,7 @@ Class Transaksi extends CI_Controller{
         
         
     }
-
+    //untuk proses transaksi
     public function processtransaction(){
         $item = $this->uri->segment(3);
         $cek = $this->db->where('username',$_SESSION['username'])->get('user');

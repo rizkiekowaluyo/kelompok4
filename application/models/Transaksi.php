@@ -9,21 +9,19 @@ class Transaksi extends CI_Model{
     }
 
     public function seetransaction(){
+        //melihat transaksi
         $alluser = $this->db->query("select * from transaksi");
         return $alluser->result_array();
     }
 
     public function InsertData($data){
+        //menginputkan data transaksi
         $this->db->insert("transaksi", $data);
-    }
-
-    public function DeleteData($id_transaksi)
-    {
-      $this->db->query("DELETE from transaksi where id_transaksi =".$id_transaksi);
     }
 
     public function GetById($id_transaksi)
     {
+        //mengambil data id transaksi
        $query = $this->db->query("SELECT * from transaksi where id_transaksi ='$id_transaksi'");
        return $query->result_array();
     }
@@ -36,4 +34,10 @@ class Transaksi extends CI_Model{
         
         status='".$data['status']."' where id_transaksi = '".$data['id_transaksi']."'");
     }
+
+    function update_datatrans($where,$data,$table){
+        // mengupdata data transaksi
+        $this->db->where($where);
+        $this->db->update($table,$data);
+        }
 }

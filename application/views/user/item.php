@@ -1,27 +1,10 @@
-<div class="container">
-    
-    <!-- <div class="col-lg-4"> -->
-        <div class="jumbotron" style="margin-top:5px">
-            <h3>Profile</h3><br>
-                <?php if (isset($_SESSION['success'])) {?>
-                    <div class="alert alert-success"><?php echo $_SESSION['success'];?></div>
-                <?php } ?>
-                <?php echo validation_errors('<div class="alert alert-danger">','</div>');?>
-                hello, <?php echo $_SESSION['username'] ?>
-                		<?php echo $_SESSION['id']?>
-														<?php echo $_SESSION['name']?>
-														<?php echo $_SESSION['address']?>;?>
-        </div>
-    <!-- </div>                -->
-</div>
-</body>
-</html>
+
 
 <!--Beginning of Box-->
 <br><br>
 <div class="container">
 		<div class="row">
-		<?php foreach ($item_array as $key) {
+		<?php foreach ($product as $key) {
 			$increment = 3;
 			
 				if($increment%3==0){ ?>
@@ -42,9 +25,18 @@
 		        		<div class="panel-footer">Vendor : <?php echo $key['vendor'];?></div>
 		        		<div class="panel-footer">Harga : <?php echo $key['price'];?></div>
 
-								<form action="">
-
-								</form>
+						<?php echo form_open("user/beli") ?>
+							<input type="hidden" name="id_item" value="<?php echo $key['id_item'];?>" >
+							<input type="hidden" name="name" value="<?php echo $key['name'];?>" >
+							<input type="hidden" name="price" value="<?php echo $key['price'];?>" >
+							<input type="hidden" name="photo" value="<?php echo $key['photo'];?>" >
+							<input type="hidden" name="qty" value="1" >
+							<div class="card-footer">
+								<button type="submit" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i>
+								Order</button>
+								<br>
+							</div>
+						<?php echo form_close();?>
 
 									
 								

@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
@@ -14,39 +15,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <thead>
                                 <tr>			
                                     <th>ID Transaction</th>
-                                    <th>ID Barang</th>
-                                    <th>Nama Barang</th>
+                                    <th>ID Item</th>
                                     <th>ID User</th>
-                                    <th>Nama User</th>
-                                    <th>Alamat User</th>
-                                    <th>Harga</th>
+                                    <th>Nama Produk</th>
+                                    <th>Tanggal Order</th>
+                                    <th>Qty</th>
+                                    <th>Saldo total</th>
                                     <th>Status</th>
                                     <th style="text-align: center;">Edit</font></th>
-                                    <th style="text-align: center;">Delete</font></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($datatransaction as $key) {?>
                                 <tr>				
                                     <td><?php echo $key['id_transaksi']; ?></td>
-                                    <td><?php echo $key['id_barang']; ?></td>
-                                    <td><?php echo $key['nama_barang']; ?></td>
+                                    <td><?php echo $key['id_item']; ?></td>
                                     <td><?php echo $key['id_user']; ?></td>
-                                    <td><?php echo $key['nama_user']; ?></td>
-                                    <td><?php echo $key['alamat_user']; ?></td>
-                                    <td><?php echo $key['harga']; ?></td>
+                                    <td><?php echo $key['name']; ?></td>
+                                    <td><?php echo $key['date']; ?></td>
+                                    <td><?php echo $key['qty']; ?></td>
+                                    <td><?php echo $key['saldo_total']; ?></td>
                                     <td><?php echo $key['status']; ?></td>
                                     <td>
-                                        <form action="<?php echo site_url('Admin/toedittransaction')?>" method="post">
-                                            <input type="hidden" name= "edit" class="form-control" value="<?php echo $key['id_transaksi']; ?>">
-                                            <button class="btn btn-warning">Edit</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="<?php echo site_url('Admin/DeleteTransaction')?>" method="post">
-                                            <input type="hidden" name= "id_transaksi" class="form-control" value="<?php echo $key['id_transaksi']; ?>">
-                                            <button class="btn btn-danger" onclick="return confirm('yakin akan menghapus transaksi <?php echo $key['id_transaksi']?> ?')">Delete</button>
-                                        </form>
+                                       <a href="<?= site_url('Admin/edittransaksi/')?><?= $key['id_transaksi'] ?>" class="btn btn-success">Edit
+                                       </a>
                                     </td>
                                 </tr>
                                 <?php } ?>

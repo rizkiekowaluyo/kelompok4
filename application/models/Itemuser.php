@@ -11,4 +11,12 @@ class Itemuser extends CI_Model{
       $query= $this->db->query("Select * from item");
       return $query->result_array();
     }
+
+    public function get(){
+        return $this->db->get('item');
+      }
+
+      public function bayar($data){
+        return $this->db->insert('transaksi',$data);
+      }
 }

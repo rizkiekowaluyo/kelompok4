@@ -75,18 +75,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li>
                                 <a href="<?php echo site_url('user/contact')?>">Contact</a>
                             </li>
+                            <li><a href="<?php echo site_url('user/keranjang_belanja/')?>">Keranjang Belanja (<?php echo count($cart); ?>)</a></li>
+                            
+
                         </ul>
                     </div>  
-
+                   
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m h-full">
                         
                             
-                        <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
-                                <i class="zmdi zmdi-shopping-cart"></i>
+                        <!-- <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart">
+                                <i class="zmdi zmdi-shopping-cart"></i>                                
                             </div>
-                        </div>
+                        </div> -->
                             
                         <div class="flex-c-m h-full p-lr-19">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
@@ -147,7 +150,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
     <!-- Cart -->
-    <div class="wrap-header-cart js-panel-cart">
+    <!-- <div class="wrap-header-cart js-panel-cart">
         <div class="s-full js-hide-cart"></div>
 
         <div class="header-cart flex-col-l p-l-65 p-r-25">
@@ -230,6 +233,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
     </div>
+                       <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+                            Check Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    
 
 
 

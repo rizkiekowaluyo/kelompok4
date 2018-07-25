@@ -373,6 +373,7 @@ class Admin extends CI_Controller{
     /* TRANSAKSI */
 
     public function seetransaction(){
+        //untuk melihat transaksi
         $data['datatransaction']= $this->transaksi->seetransaction();
         $this->load->view('admin/header');
         $this->load->view('admin/seetransaction',$data);
@@ -381,6 +382,7 @@ class Admin extends CI_Controller{
 
     public function toedittransaction()
     {
+        //mengambil data dari fungsi getbyid
         $this->load->helper('form');
         $id_transaksi = $this->input->post('edit');
         $data['detailtransaction'] = $this->transaksi->GetById($id_transaksi);
@@ -391,57 +393,60 @@ class Admin extends CI_Controller{
     }
 
     public function EditTransaction(){
+        //untuk mengedit status di transaksi
         $id_transaksi = $this->input->post('id_transaksi');
-        $id_barang = $this->input->post('id_barang');
-        $nama_barang = $this->input->post('nama_barang');
-        $id_user = $this->input->post('id_user');
-        $nama_user = $this->input->post('nama_user');
-        $alamat_user = $this->input->post('alamat_user');
-        $harga = $this->input->post('harga');
         $status = $this->input->post('status');
-        
             $data = array(
                 'id_transaksi' => $id_transaksi,
-                'id_barang' => $id_barang,
-                'nama_barang' => $nama_barang,
-                'id_user' => $id_user,
-                'nama_user' =>$nama_user,
-                'alamat_user' => $alamat_user,
-                'harga'=>$harga,
                 'status' => $status);
             $this->transaksi->updateWithImage($data, "transaksi");
             redirect('admin/index');
         }
     
 
-    public function DeleteTransaction(){
+    // public function DeleteTransaction(){
         
-        $id_transaksi = $this->input->post('id_transaksi');
-        $this->transaksi->DeleteData($id_transaksi);
-        redirect('admin/seetransaction');
-    }
+    //     $id_transaksi = $this->input->post('id_transaksi');
+    //     $this->transaksi->DeleteData($id_transaksi);
+    //     redirect('admin/seetransaction');
+    // }
 
-    public function add_transaction(){
-        $id_transaksi = $this->input->post('id_transaksi');
-        $id_barang = $this->input->post('id_barang');
-        $nama_barang = $this->input->post('nama_barang');
-        $id_user = $this->input->post('id_user');
-        $alamat_user = $this->input->post('alamat_user');
-        $harga = $this->input->post('harga');
-        $status = $this->input->post('status');
+    // public function add_transaction(){
+    //     $id_transaksi = $this->input->post('id_transaksi');
+    //     $id_barang = $this->input->post('id_barang');
+    //     $nama_barang = $this->input->post('nama_barang');
+    //     $id_user = $this->input->post('id_user');
+    //     $alamat_user = $this->input->post('alamat_user');
+    //     $harga = $this->input->post('harga');
+    //     $status = $this->input->post('status');
         
-            $data = array(
-                'id_transaksi' => $id_transaksi,
-                'id_barang' => $id_barang,
-                'nama_barang' =>$nama_barang,
-                'id_user' => $id_user,
-                'nama_user' => $nama_user,
-                'alamat_user'=>$alamat_user,
-                'harga'=>$harga,
-                'status' => $status);
-            $this->transaksi->InsertData($data, "transaksi");
-            redirect('admin/index');
+    //         $data = array(
+    //             'id_transaksi' => $id_transaksi,
+    //             'id_barang' => $id_barang,
+    //             'nama_barang' =>$nama_barang,
+    //             'id_user' => $id_user,
+    //             'nama_user' => $nama_user,
+    //             'alamat_user'=>$alamat_user,
+    //             'harga'=>$harga,
+    //             'status' => $status);
+    //         $this->transaksi->InsertData($data, "transaksi");
+    //         redirect('admin/index');
     
-    }       
+    // }    
+    
+    public function edittransaksi($id)
+    {
+        $status ='Terkirim';
+        $where = array(
+            'id_transaksi' => $id
+        );
+	   
+		$data = array(
+			'status' => $status
+			);
+	$this->transaksi->update_datatrans($where,$data,'transaksi');
+    redirect('admin/seetransaction');
+
+    }
     
 }

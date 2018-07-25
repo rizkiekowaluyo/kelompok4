@@ -36,7 +36,7 @@
                     <span class="login100-form-title p-b-33">
                         Account Registration
                     </span>
-                    
+                    <?php echo form_open_multipart('home/registerpage'); ?>
                     <?php if (isset($_SESSION['success'])) {?>
                     <div class="alert alert-success"><?php echo $_SESSION['success'];?></div>
                     <?php } ?>

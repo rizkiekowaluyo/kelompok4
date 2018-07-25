@@ -16,39 +16,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <?php foreach ($detailtransaction as $key) {?>
                                                 <div class="form-group">
                                                         <label for="id">Id Transaksi</label>
-                                                        <input type="text" class="form-control" id="id_transaksi" name="id_transaksi" value="<?php echo $key['id_transaksi'] ?>" >
+                                                        <input type="text" class="form-control" id="id_transaksi" name="id_transaksi" value="<?php echo $key['id_transaksi'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="id_brg">Id Barang</label>
-                                                        <input type="text" class="form-control" id="id_barang" name="id_barang" value="<?php echo $key['id_barang'] ?>" >
+                                                        <input type="text" class="form-control" id="id_item" name="id_item" value="<?php echo $key['id_item'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                        <label for="nama_brg">Nama Barang</label>
-                                                        <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?php echo $key['nama_barang'] ?>" >
+                                                        <label for="nama_brg">ID User</label>
+                                                        <input type="text" class="form-control" id="id_user" name="id_user" value="<?php echo $key['id_user'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                        <label for="id_user">Id User</label>
-                                                        <input type="text" class="form-control" id="id_user" name="id_user" value="<?php echo $key['id_user'] ?>" >
+                                                        <label for="id_user">Nama Produk</label>
+                                                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $key['name'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                        <label for="price">Nama Customer</label>
-                                                        <input type="text" class="form-control" id="nama_user" name="nama_user" value="<?php echo $key['nama_user'] ?>" >
+                                                        <label for="price">Tanggal Order</label>
+                                                        <input type="text" class="form-control" id="date" name="date" value="<?php echo $key['date'] ?>" readonly>
+                                                </div>  
+                                                <div class="form-group">
+                                                        <label for="stock">Qty</label>
+                                                        <input type="text" class="form-control" id="qty" name="qty" value="<?php echo $key['qty'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                        <label for="stock">Alamat User</label>
-                                                        <input type="text" class="form-control" id="alamat_user" name="alamat_user" value="<?php echo $key['alamat_user'] ?>" >
-                                                </div>
-                                                <div class="form-group">
-                                                        <label for="stock">Harga</label>
-                                                        <input type="text" class="form-control" id="harga" name="harga" value="<?php echo $key['harga'] ?>" >
+                                                        <label for="stock">Saldo Total</label>
+                                                        <input type="text" class="form-control" id="saldo_total" name="saldo_total" value="<?php echo $key['saldo_total'] ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="stock">Status</label>
+                                                        <br>
+                                                        <select name="status" id="status">
+                                                                <option value=""></option>
+                                                                <option value="">Processed</option>
+                                                        </select>
                                                         <input type="text" class="form-control" id="status" name="status" value="<?php echo $key['status'] ?>" >
                                                 </div>
                                                 
                                         <?php } ?>
-                                                <input type="submit" name="add" value="Tambah" class="btn btn-success">
+                                                <input type="submit" name="add" value="Ubah" class="btn btn-success">
                                         </div>
                                 </div>
                         </div>

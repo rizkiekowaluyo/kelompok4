@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -141,7 +141,7 @@ class CI_Cart {
 		// at the top level. If it's not found, we will assume it's a multi-dimensional array.
 
 		$save_cart = FALSE;
-		if (isset($items['id']))
+		if (isset($items['id_item']))
 		{
 			if (($rowid = $this->_insert($items)))
 			{
@@ -152,7 +152,7 @@ class CI_Cart {
 		{
 			foreach ($items as $val)
 			{
-				if (is_array($val) && isset($val['id']))
+				if (is_array($val) && isset($val['id_item']))
 				{
 					if ($this->_insert($val))
 					{
@@ -192,7 +192,7 @@ class CI_Cart {
 		// --------------------------------------------------------------------
 
 		// Does the $items array contain an id, quantity, price, and name?  These are required
-		if ( ! isset($items['id'], $items['qty'], $items['price'], $items['name']))
+		if ( ! isset($items['id_item'], $items['qty'], $items['price'], $items['name']))
 		{
 			log_message('error', 'The cart array must contain a product ID, quantity, price, and name.');
 			return FALSE;
@@ -214,7 +214,7 @@ class CI_Cart {
 		// Validate the product ID. It can only be alpha-numeric, dashes, underscores or periods
 		// Not totally sure we should impose this rule, but it seems prudent to standardize IDs.
 		// Note: These can be user-specified by setting the $this->product_id_rules variable.
-		if ( ! preg_match('/^['.$this->product_id_rules.']+$/i', $items['id']))
+		if ( ! preg_match('/^['.$this->product_id_rules.']+$/i', $items['id_item']))
 		{
 			log_message('error', 'Invalid product ID.  The product ID can only contain alpha-numeric characters, dashes, and underscores');
 			return FALSE;
@@ -247,14 +247,14 @@ class CI_Cart {
 		// This becomes the unique "row ID"
 		if (isset($items['options']) && count($items['options']) > 0)
 		{
-			$rowid = md5($items['id'].serialize($items['options']));
+			$rowid = md5($items['id_item'].serialize($items['options']));
 		}
 		else
 		{
 			// No options were submitted so we simply MD5 the product ID.
 			// Technically, we don't need to MD5 the ID in this case, but it makes
 			// sense to standardize the format of array indexes for both conditions
-			$rowid = md5($items['id']);
+			$rowid = md5($items['id_item']);
 		}
 
 		// --------------------------------------------------------------------
@@ -371,7 +371,7 @@ class CI_Cart {
 		}
 
 		// product id & name shouldn't be changed
-		foreach (array_diff($keys, array('id', 'name')) as $key)
+		foreach (array_diff($keys, array('id_item', 'name')) as $key)
 		{
 			$this->_cart_contents[$items['rowid']][$key] = $items[$key];
 		}
