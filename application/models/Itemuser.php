@@ -19,4 +19,16 @@ class Itemuser extends CI_Model{
       public function bayar($data){
         return $this->db->insert('transaksi',$data);
       }
+
+      public function getHistory()
+      {
+        $id=$this->session->userdata['id_user'];
+        $this->db->select('transaksi.*, item.name, user.username');
+        $this->db->from('transaksi transaksi');
+        $this->db->join('item','item.id_item= transaksi.id_item');
+        $this->db->join('user','user.id_user= transaksi.id_user');
+        $this->db->where('user.id_user',$id);
+        $query = $this->db->get();
+        return $query->result();
+      }
 }

@@ -75,6 +75,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li>
                                 <a href="<?php echo site_url('user/contact')?>">Contact</a>
                             </li>
+                            <li>
+                                <a href="<?php echo site_url('user/seehistory')?>">History</a>
+                            </li>
                             <li><a href="<?php echo site_url('user/keranjang_belanja/')?>">Keranjang Belanja (<?php echo count($cart); ?>)</a></li>
                             
 

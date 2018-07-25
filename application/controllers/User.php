@@ -119,4 +119,11 @@ class User extends CI_Controller{
         $this->cart->destroy();
         redirect('user/keranjang_belanja');
       }
+
+      public function seehistory(){
+        $data['history']=$this->itemuser->getHistory();
+        $data['cart'] = $this->cart->contents();
+        $this->load->view('user/header',$data);
+		    $this->load->view('user/history',$data);
+    }
 }
